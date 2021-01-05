@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./pages/home";
+import Podcasts from "./pages/podcasts";
 
 import "./App.scss";
 
@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <switch>
-          <Route exact path="/" component={Home} />
-        </switch>
+        <Switch>
+          <Route exact path="/" component={Podcasts} />
+        </Switch>
       </Router>
     </div>
   );
