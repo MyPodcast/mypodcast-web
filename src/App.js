@@ -1,10 +1,17 @@
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Home from "./pages/home";
+
 import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">MyPodcast - WEB</header>
+      <Router>
+        <switch>
+          <Route exact path="/" component={Home} />
+        </switch>
+      </Router>
     </div>
   );
 }
