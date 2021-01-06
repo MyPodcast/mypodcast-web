@@ -1,15 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Podcasts from "./pages/podcasts";
+import Header from "./components/headerComponent/header";
+import Wip from "./pages/wip";
+import NotFound from "./pages/notFound";
 
 import "./App.scss";
+import "@quentinguidee/react-jade-ui/dist/index.css";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Header />
         <Switch>
-          <Route exact path="/" component={Podcasts} />
+          <Route exact path="/" component={Wip} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </div>

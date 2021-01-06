@@ -1,0 +1,23 @@
+@import "../../scss/color";
+
+.notfound {
+  &__sad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    width: 100%;
+    font-size: 200px;
+    color: $nord4;
+    z-index: 0;
+    line-height: 100px;
+  }
+  &__message {
+    z-index: 1;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    width: 100%;
+  }
+}
