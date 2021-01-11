@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import "./scss/notFound.scss";
 
 class NotFound extends Component {
+  constructor(props) {
+    super(props);
+    document.title = "MyPodcast - 404";
+  }
+
   render() {
     return (
       <div className="notfound">
