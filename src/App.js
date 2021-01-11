@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Podcasts from "./pages/podcasts";
+// import Podcasts from "./pages/podcasts";
 import Header from "./components/headerComponent/header";
 import Wip from "./pages/wip";
 import NotFound from "./pages/notFound";
