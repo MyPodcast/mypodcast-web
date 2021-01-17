@@ -8,11 +8,13 @@ import PodcastArrayComponent from "./components/podcastArrayComponent/podcastArr
 
 import "./App.scss";
 import "@quentinguidee/react-jade-ui/dist/index.css";
+import { CookiesConsent } from "@quentinguidee/react-jade-ui";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <CookiesConsent toPolicy="/policy" />
         <Header />
         <Switch>
           <Route exact path="/" component={Wip} />
