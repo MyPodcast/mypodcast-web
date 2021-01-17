@@ -1,0 +1,42 @@
+@import "../../scss/color";
+
+table {
+  max-width: 100%;
+  overflow: auto;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  thead {
+    tr {
+      background-color: $nord5;
+    }
+  }
+  tr {
+    background-color: #ffffff;
+    border-bottom: 1px solid $nord3;
+  }
+
+  tr:nth-child(2n) {
+    background-color: darken(#ffffff, 5%);
+  }
+
+  th {
+    padding: 6px 13px;
+    border: 1px solid $nord3;
+  }
+
+  td {
+    padding: 6px 13px;
+    border: 1px solid $nord3;
+  }
+}
+
+.cover {
+  width: 100px;
+}
+
+audio {
+  border-radius: 10px;
+}

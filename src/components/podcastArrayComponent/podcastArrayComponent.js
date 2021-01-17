@@ -4,9 +4,11 @@ import axios from "axios";
 import { Octokit } from "@octokit/core";
 import GithubConnector from "../../githubConnector";
 
-import { IconButton } from "@material-ui/core";
-import { MdEdit, MdAdd, MdSave } from "react-icons/md";
+import { IconButton, MenuItem, Select, TextField } from "@material-ui/core";
+import { MdEdit, MdAdd, MdSave, MdDelete } from "react-icons/md";
 import { VscOutput } from "react-icons/vsc";
+
+import "./podcastArrayComponent.scss";
 
 class PodcastArrayComponent extends Component {
   constructor(props) {
@@ -253,17 +255,17 @@ class PodcastArrayComponent extends Component {
         if (this.state.edit) {
           showButtons = true;
           podcastsArray = (
-            <table className="podcasts__array">
+            <table className="podcasts__array__edit">
               <thead>
                 <tr>
-                  <th>id</th>
-                  <th>Name</th>
-                  <th>Author</th>
-                  <th>Synopsis</th>
+                  <th>N°</th>
+                  <th>Nom</th>
+                  <th>Autheur</th>
+                  <th>Résumé</th>
                   <th>Image</th>
-                  <th>State</th>
-                  <th>Offset</th>
-                  <th>Last-Open</th>
+                  <th>Etat</th>
+                  <th>Avancement</th>
+                  {/* <th>Last-Open</th> */}
                   <th>Url</th>
                 </tr>
               </thead>
@@ -283,17 +285,17 @@ class PodcastArrayComponent extends Component {
         } else {
           showButtons = true;
           podcastsArray = (
-            <table className="podcasts__array">
+            <table className="podcasts__array__view">
               <thead>
                 <tr>
-                  <th>id</th>
-                  <th>Name</th>
-                  <th>Author</th>
-                  <th>Synopsis</th>
+                  <th>N°</th>
+                  <th>Nom</th>
+                  <th>Autheur</th>
+                  <th>Résumé</th>
                   <th>Image</th>
-                  <th>State</th>
-                  <th>Offset</th>
-                  <th>Last-Open</th>
+                  <th>Etat</th>
+                  <th>Avancement</th>
+                  {/* <th>Last-Open</th> */}
                   <th>Url</th>
                 </tr>
               </thead>
@@ -392,66 +394,105 @@ class TableRowForm extends Component {
 
   render() {
     return (
-      <tr>
-        <td>{this.props.id}</td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.name}
-            onChange={this.handleNameChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.author}
-            onChange={this.handleAuthorChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.synopsis}
-            onChange={this.handleSynopsisChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.img}
-            onChange={this.handleImageChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.state}
-            onChange={this.handleStateChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.offset}
-            onChange={this.handleOffsetChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.lastopen}
-            onChange={this.handleLastOpenChange}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            value={this.state.podcast.url}
-            onChange={this.handleUrlChange}
-          />
-        </td>
-        <button onClick={this.handleDel.bind(this)}>DEL</button>
-      </tr>
+      <>
+        <tr>
+          <td>{this.props.id + 1}</td>
+          <td>
+            <TextField
+              style={{ minWidth: "100px" }}
+              id="standard-multiline-flexible"
+              label="Nom"
+              multiline
+              // rowsMax={10}
+              value={this.state.podcast.name}
+              onChange={this.handleNameChange}
+            />
+          </td>
+          <td>
+            <TextField
+              style={{ minWidth: "100px" }}
+              id="standard-multiline-flexible"
+              label="Autheur"
+              multiline
+              // rowsMax={10}
+              value={this.state.podcast.author}
+              onChange={this.handleAuthorChange}
+            />
+          </td>
+          <td>
+            <TextField
+              style={{ minWidth: "200px" }}
+              id="standard-multiline-flexible"
+              label="Résumé"
+              multiline
+              // rowsMax={10}
+              value={this.state.podcast.synopsis}
+              onChange={this.handleSynopsisChange}
+            />
+          </td>
+          <td>
+            <TextField
+              style={{ minWidth: "200px" }}
+              id="standard-multiline-flexible"
+              label="Image"
+              multiline
+              rowsMax={3}
+              value={this.state.podcast.img}
+              onChange={this.handleImageChange}
+            />
+          </td>
+          <td>
+            <Select
+              labelId="demo-simple-select-error-label"
+              id="demo-simple-select-error"
+              value={this.state.podcast.state}
+              onChange={this.handleStateChange}
+              renderValue={(value) => stateToLang(value)}
+            >
+              <MenuItem value={"not_read"}>Nouveau</MenuItem>
+              <MenuItem value={"in_read"}>Lecture</MenuItem>
+              <MenuItem value={"read"}>Lu</MenuItem>
+            </Select>
+          </td>
+          <td>
+            <TextField
+              style={{ minWidth: "100px" }}
+              id="standard-multiline-flexible"
+              label="Avancement"
+              multiline
+              // rowsMax={10}
+              value={this.state.podcast.offset}
+              onChange={this.handleOffsetChange}
+            />
+          </td>
+          {/* <td>
+            <input
+              type="text"
+              value={this.state.podcast.lastopen}
+              onChange={this.handleLastOpenChange}
+            />
+          </td> */}
+          <td>
+            <TextField
+              style={{ minWidth: "200px" }}
+              id="standard-multiline-flexible"
+              label="Image"
+              multiline
+              rowsMax={3}
+              value={this.state.podcast.img}
+              onChange={this.handleImageChange}
+            />
+          </td>
+          <td>
+            <IconButton
+              onClick={this.handleDel.bind(this)}
+              aria-label="Supprimer"
+            >
+              <MdDelete />
+            </IconButton>
+          </td>
+        </tr>
+      </>
     );
   }
 }
@@ -469,17 +510,37 @@ class TableRow extends Component {
   render() {
     return (
       <tr>
-        <td>{this.props.id}</td>
+        <td>{this.props.id + 1}</td>
         <td>{this.state.podcast.name}</td>
         <td>{this.state.podcast.author}</td>
         <td>{this.state.podcast.synopsis}</td>
-        <td>{this.state.podcast.img}</td>
-        <td>{this.state.podcast.state}</td>
+        <td>
+          <img src={this.state.podcast.img} alt="cover" className="cover" />
+        </td>
+        <td>{stateToLang(this.state.podcast.state)}</td>
         <td>{this.state.podcast.offset}</td>
-        <td>{this.state.podcast.lastopen}</td>
-        <td>{this.state.podcast.url}</td>
+        {/* <td>{this.state.podcast.lastopen}</td> */}
+        <td>
+          <audio controls src={this.state.podcast.url}>
+            Your browser does not support the
+            <code>audio</code> element.
+          </audio>
+        </td>
       </tr>
     );
+  }
+}
+
+function stateToLang(state) {
+  switch (state) {
+    case "not_read":
+      return "Nouveau";
+    case "in_read":
+      return "Lecture";
+    case "read":
+      return "Lu";
+    default:
+      break;
   }
 }
 
