@@ -194,7 +194,8 @@ class PodcastArrayComponent extends Component {
   }
 
   render() {
-    return (
+    var showButtons = false;
+    let buttons = (
       <div>
         {this.state.save ? (
           <button onClick={this.handleSave.bind(this)}>Save</button>
@@ -209,8 +210,24 @@ class PodcastArrayComponent extends Component {
         ) : (
           ""
         )}
-        {this.state.gist ? (
-          this.state.podcasts ? (
+      </div>
+    );
+
+    let podcastsArray = <h1>loading</h1>;
+    if (this.state.get) {
+      // If gist doesn't exist
+      if (!this.state.gist) {
+        podcastsArray = (
+          <>
+            <h1>Pas de gist trouvé 🔍</h1>
+            <button onClick={this.createGist}>Créer</button>
+          </>
+        );
+      } else if (this.state.podcasts) {
+        // were waiting the promise
+        if (this.state.edit) {
+          showButtons = true;
+          podcastsArray = (
             <table className="podcasts__array">
               <thead>
                 <tr>
@@ -226,43 +243,55 @@ class PodcastArrayComponent extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.podcasts
-                  ? this.state.podcasts.map((podcast, id) =>
-                      this.state.edit ? (
-                        <TableRowForm
-                          key={id}
-                          data={podcast}
-                          id={id}
-                          handlePodcastsUpdate={this.handlePodcastsUpdate.bind(
-                            this
-                          )}
-                          handleDel={this.handleDel.bind(this)}
-                        />
-                      ) : (
-                        <TableRow
-                          key={id}
-                          data={podcast}
-                          id={id}
-                          handlePodcastsUpdate={this.handlePodcastsUpdate.bind(
-                            this
-                          )}
-                        />
-                      )
-                    )
-                  : "loading"}
+                {this.state.podcasts.map((podcast, id) => (
+                  <TableRowForm
+                    key={id}
+                    data={podcast}
+                    id={id}
+                    handlePodcastsUpdate={this.handlePodcastsUpdate.bind(this)}
+                    handleDel={this.handleDel.bind(this)}
+                  />
+                ))}
               </tbody>
             </table>
-          ) : (
-            "loading"
-          )
-        ) : this.state.get ? (
-          <div>
-            <h1>pas de gist trouvé il faut en crée un </h1>
-            <button onClick={this.createGist}>Créer</button>
-          </div>
-        ) : (
-          "loading"
-        )}
+          );
+        } else {
+          showButtons = true;
+          podcastsArray = (
+            <table className="podcasts__array">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Synopsis</th>
+                  <th>Image</th>
+                  <th>State</th>
+                  <th>Offset</th>
+                  <th>Last-Open</th>
+                  <th>Url</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.podcasts.map((podcast, id) => (
+                  <TableRow
+                    key={id}
+                    data={podcast}
+                    id={id}
+                    handlePodcastsUpdate={this.handlePodcastsUpdate.bind(this)}
+                  />
+                ))}
+              </tbody>
+            </table>
+          );
+        }
+      }
+    }
+
+    return (
+      <div>
+        {showButtons ? buttons : ""}
+        {podcastsArray}
       </div>
     );
   }
