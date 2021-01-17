@@ -76,7 +76,7 @@ class PodcastArrayComponent extends Component {
           // console.log(gists);
           for (let i in gists) {
             if (gists[i].description === "MyPodcast") {
-              console.log(gists[i]);
+              // console.log(gists[i]);
               this.setState(
                 { gist: gists[i] },
                 function () {
@@ -178,7 +178,7 @@ class PodcastArrayComponent extends Component {
       img: null,
       state: "not_read",
       offset: 0,
-      lastOpen: null,
+      lastopen: null,
       url: null,
     });
     this.setState({ podcasts: podcasts, save: true });
@@ -194,7 +194,6 @@ class PodcastArrayComponent extends Component {
   }
 
   render() {
-    console.log("render");
     return (
       <div>
         {this.state.save ? (
@@ -327,7 +326,7 @@ class TableRowForm extends Component {
 
   handleLastOpenChange = (e) => {
     let newPodcasts = this.state.podcast;
-    newPodcasts.lastOpen = e.target.value;
+    newPodcasts.lastopen = e.target.value;
     this.handleChange(this.state.id, newPodcasts);
   };
 
@@ -338,11 +337,6 @@ class TableRowForm extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // const {
-    //   data: { id, name, author, synopsis, mage, state, offset, lastopen, url },
-    // } = this.props;
-
     return (
       <tr>
         <td>{this.props.id}</td>
@@ -391,7 +385,7 @@ class TableRowForm extends Component {
         <td>
           <input
             type="text"
-            value={this.state.podcast.lastOpen}
+            value={this.state.podcast.lastopen}
             onChange={this.handleLastOpenChange}
           />
         </td>
@@ -419,11 +413,6 @@ class TableRow extends Component {
   }
 
   render() {
-    // console.log(this.props);
-    // const {
-    //   data: { id, name, author, synopsis, mage, state, offset, lastopen, url },
-    // } = this.props;
-
     return (
       <tr>
         <td>{this.props.id}</td>
@@ -433,7 +422,7 @@ class TableRow extends Component {
         <td>{this.state.podcast.img}</td>
         <td>{this.state.podcast.state}</td>
         <td>{this.state.podcast.offset}</td>
-        <td>{this.state.podcast.lastOpen}</td>
+        <td>{this.state.podcast.lastopen}</td>
         <td>{this.state.podcast.url}</td>
       </tr>
     );
