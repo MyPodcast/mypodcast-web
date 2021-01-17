@@ -1,0 +1,21 @@
+// Files starting by "_" are not processed by node-sass when you ctrl-s; they are only processed in the omega.library.sass file.
+@import '_fonts.sass'
+@import '_animations.sass'
+
+$font-righteous: 'Righteous', cursive
+$font-fira-sans: 'Fira Sans', sans-serif
+$font-code: 'Fira Code', sans-serif
+
+body, .body
+    display: flex
+    font-family: $font-fira-sans
+    flex-direction: column
+    min-height: 100vh
+
+.content
+    flex: 1
+
+@media screen and ( max-width: 1000px )
+    .content
+        // TODO: Remove @media from omega-ide
+        margin-top: 0 !important

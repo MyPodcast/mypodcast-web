@@ -9,6 +9,7 @@ import PodcastArrayComponent from "./components/podcastArrayComponent/podcastArr
 import "./App.scss";
 import "@quentinguidee/react-jade-ui/dist/index.css";
 import { CookiesConsent } from "@quentinguidee/react-jade-ui";
+import Policy from "./pages/Policy";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Wip} />
           <Route exact path="/podcasts" component={PodcastArrayComponent} />
+          <Route exact path="/policy" component={Policy} />
           <Route component={NotFound} />
         </Switch>
       </Router>
