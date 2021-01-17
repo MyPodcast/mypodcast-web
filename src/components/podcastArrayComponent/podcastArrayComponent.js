@@ -260,7 +260,7 @@ class PodcastArrayComponent extends Component {
                 <tr>
                   <th>N°</th>
                   <th>Nom</th>
-                  <th>Autheur</th>
+                  <th>Auteur</th>
                   <th>Résumé</th>
                   <th>Image</th>
                   <th>Etat</th>
@@ -290,7 +290,7 @@ class PodcastArrayComponent extends Component {
                 <tr>
                   <th>N°</th>
                   <th>Nom</th>
-                  <th>Autheur</th>
+                  <th>Auteur</th>
                   <th>Résumé</th>
                   <th>Image</th>
                   <th>Etat</th>
