@@ -4,7 +4,13 @@ import axios from "axios";
 import { Octokit } from "@octokit/core";
 import GithubConnector from "../../githubConnector";
 
-import { IconButton, MenuItem, Select, TextField } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
 import { MdEdit, MdAdd, MdSave, MdDelete } from "react-icons/md";
 import { VscOutput } from "react-icons/vsc";
 
@@ -199,6 +205,8 @@ class PodcastArrayComponent extends Component {
   }
 
   render() {
+    let isLogged = this.state.connector.isLogged();
+
     var showButtons = false;
     let buttons = (
       <div>
@@ -241,78 +249,93 @@ class PodcastArrayComponent extends Component {
     );
 
     let podcastsArray = <h1>loading</h1>;
-    if (this.state.get) {
-      // If gist doesn't exist
-      if (!this.state.gist) {
-        podcastsArray = (
-          <>
-            <h1>Pas de gist trouvé 🔍</h1>
-            <button onClick={this.createGist}>Créer</button>
-          </>
-        );
-      } else if (this.state.podcasts) {
-        // were waiting the promise
-        if (this.state.edit) {
-          showButtons = true;
+    if (isLogged) {
+      if (this.state.get) {
+        // If gist doesn't exist
+        if (!this.state.gist) {
           podcastsArray = (
-            <table className="podcasts__array__edit">
-              <thead>
-                <tr>
-                  <th>N°</th>
-                  <th>Nom</th>
-                  <th>Auteur</th>
-                  <th>Résumé</th>
-                  <th>Image</th>
-                  <th>Etat</th>
-                  <th>Avancement</th>
-                  {/* <th>Last-Open</th> */}
-                  <th>Url</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.podcasts.map((podcast, id) => (
-                  <TableRowForm
-                    key={id}
-                    data={podcast}
-                    id={id}
-                    handlePodcastsUpdate={this.handlePodcastsUpdate.bind(this)}
-                    handleDel={this.handleDel.bind(this)}
-                  />
-                ))}
-              </tbody>
-            </table>
+            <>
+              <h1>Pas de gist trouvé 🔍</h1>
+              <button onClick={this.createGist}>Créer</button>
+            </>
           );
-        } else {
-          showButtons = true;
-          podcastsArray = (
-            <table className="podcasts__array__view">
-              <thead>
-                <tr>
-                  <th>N°</th>
-                  <th>Nom</th>
-                  <th>Auteur</th>
-                  <th>Résumé</th>
-                  <th>Image</th>
-                  <th>Etat</th>
-                  <th>Avancement</th>
-                  {/* <th>Last-Open</th> */}
-                  <th>Url</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.podcasts.map((podcast, id) => (
-                  <TableRow
-                    key={id}
-                    data={podcast}
-                    id={id}
-                    handlePodcastsUpdate={this.handlePodcastsUpdate.bind(this)}
-                  />
-                ))}
-              </tbody>
-            </table>
-          );
+        } else if (this.state.podcasts) {
+          // were waiting the promise
+          if (this.state.edit) {
+            showButtons = true;
+            podcastsArray = (
+              <table className="podcasts__array__edit">
+                <thead>
+                  <tr>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Auteur</th>
+                    <th>Résumé</th>
+                    <th>Image</th>
+                    <th>Etat</th>
+                    <th>Avancement</th>
+                    {/* <th>Last-Open</th> */}
+                    <th>Url</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.podcasts.map((podcast, id) => (
+                    <TableRowForm
+                      key={id}
+                      data={podcast}
+                      id={id}
+                      handlePodcastsUpdate={this.handlePodcastsUpdate.bind(
+                        this
+                      )}
+                      handleDel={this.handleDel.bind(this)}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            );
+          } else {
+            showButtons = true;
+            podcastsArray = (
+              <table className="podcasts__array__view">
+                <thead>
+                  <tr>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Auteur</th>
+                    <th>Résumé</th>
+                    <th>Image</th>
+                    <th>Etat</th>
+                    <th>Avancement</th>
+                    {/* <th>Last-Open</th> */}
+                    <th>Url</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.podcasts.map((podcast, id) => (
+                    <TableRow
+                      key={id}
+                      data={podcast}
+                      id={id}
+                      handlePodcastsUpdate={this.handlePodcastsUpdate.bind(
+                        this
+                      )}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            );
+          }
         }
       }
+    } else {
+      podcastsArray = (
+        <>
+          <h1>Vous n'êtes pas connecté 🔓 !</h1>
+          <Button onClick={this.login} variant="outlined" color="primary">
+            Se connecter
+          </Button>
+        </>
+      );
     }
 
     return (
