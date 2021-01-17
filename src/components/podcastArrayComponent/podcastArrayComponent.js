@@ -2,8 +2,11 @@ import React, { Component } from "react";
 
 import axios from "axios";
 import { Octokit } from "@octokit/core";
-
 import GithubConnector from "../../githubConnector";
+
+import { IconButton } from "@material-ui/core";
+import { MdEdit, MdAdd, MdSave } from "react-icons/md";
+import { VscOutput } from "react-icons/vsc";
 
 class PodcastArrayComponent extends Component {
   constructor(props) {
@@ -198,18 +201,40 @@ class PodcastArrayComponent extends Component {
     let buttons = (
       <div>
         {this.state.save ? (
-          <button onClick={this.handleSave.bind(this)}>Save</button>
+          <IconButton
+            onClick={this.handleSave.bind(this)}
+            aria-label="Sauvegarder"
+          >
+            <MdSave />
+          </IconButton>
         ) : (
           ""
         )}
-        <button onClick={this.handleEdit.bind(this)}>
-          {this.state.edit ? "Visualiser" : "Editer"}
-        </button>
-        {this.state.edit ? (
-          <button onClick={this.handleAddNewLine.bind(this)}>Ajouter</button>
-        ) : (
-          ""
-        )}
+        <>
+          {this.state.edit ? (
+            <>
+              <IconButton
+                onClick={this.handleEdit.bind(this)}
+                aria-label="Visualiser"
+              >
+                <VscOutput />
+              </IconButton>
+              <IconButton
+                onClick={this.handleAddNewLine.bind(this)}
+                aria-label="Ajouter une ligne"
+              >
+                <MdAdd />
+              </IconButton>
+            </>
+          ) : (
+            <IconButton
+              onClick={this.handleEdit.bind(this)}
+              aria-label="Editer"
+            >
+              <MdEdit />
+            </IconButton>
+          )}
+        </>
       </div>
     );
 
