@@ -435,7 +435,7 @@ class TableRowForm extends Component {
             <TextField
               style={{ minWidth: "100px" }}
               id="standard-multiline-flexible"
-              label="Autheur"
+              label="Auteur"
               multiline
               // rowsMax={10}
               value={this.state.podcast.author}
@@ -499,11 +499,11 @@ class TableRowForm extends Component {
             <TextField
               style={{ minWidth: "200px" }}
               id="standard-multiline-flexible"
-              label="Image"
+              label="Url"
               multiline
               rowsMax={3}
-              value={this.state.podcast.img}
-              onChange={this.handleImageChange}
+              value={this.state.podcast.url}
+              onChange={this.handleUrlChange}
             />
           </td>
           <td>
