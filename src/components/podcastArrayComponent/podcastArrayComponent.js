@@ -342,6 +342,7 @@ class PodcastArrayComponent extends Component {
       <div>
         {showButtons ? buttons : ""}
         {podcastsArray}
+        {showButtons ? buttons : ""}
       </div>
     );
   }
