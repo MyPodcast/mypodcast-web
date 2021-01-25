@@ -10,7 +10,6 @@ import "./App.scss";
 import "@quentinguidee/react-jade-ui/dist/index.css";
 import { CookiesConsent } from "@quentinguidee/react-jade-ui";
 import Policy from "./pages/Policy";
-import Footer from "./components/footerComponent/footerComponent";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           <Route exact path="/policy" component={Policy} />
           <Route component={NotFound} />
         </Switch>
-        <Footer />
       </Router>
     </div>
   );
