@@ -114,7 +114,7 @@ class PodcastArrayComponent extends Component {
       public: false,
       files: {
         "podcasts.json": {
-          content: [
+          content: JSON.stringify([
             {
               id: "Kalimba-azdfvbnj",
               name: "Kalimba",
@@ -128,7 +128,7 @@ class PodcastArrayComponent extends Component {
               url:
                 "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
             },
-          ],
+          ]),
         },
       },
     });
