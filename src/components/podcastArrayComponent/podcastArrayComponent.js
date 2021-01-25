@@ -256,7 +256,13 @@ class PodcastArrayComponent extends Component {
           podcastsArray = (
             <>
               <h1>Pas de gist trouvé 🔍</h1>
-              <button onClick={this.createGist}>Créer</button>
+              <Button
+                onClick={this.createGist}
+                variant="outlined"
+                color="primary"
+              >
+                Créer
+              </Button>
             </>
           );
         } else if (this.state.podcasts) {
