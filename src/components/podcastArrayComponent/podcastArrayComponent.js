@@ -112,7 +112,25 @@ class PodcastArrayComponent extends Component {
     var data = JSON.stringify({
       description: "MyPodcast",
       public: false,
-      files: { "podcasts.json": { content: "[]" } },
+      files: {
+        "podcasts.json": {
+          content: [
+            {
+              id: "Kalimba-azdfvbnj",
+              name: "Kalimba",
+              author: "Kalimba",
+              synopsis: "A default file, to discover the app",
+              img:
+                "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo400/6184229/6184229-1591646036842-0309ff2c8deed.jpg",
+              state: "not_read",
+              offset: 0,
+              lastopen: null,
+              url:
+                "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+            },
+          ],
+        },
+      },
     });
 
     var config = {
