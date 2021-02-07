@@ -1,0 +1,16 @@
+.home {
+  display: flex;
+
+  &__github {
+    flex: 1;
+  }
+  &__howto {
+    flex: 3;
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      height: 500px;
+    }
+  }
+}
