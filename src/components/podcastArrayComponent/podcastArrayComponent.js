@@ -393,7 +393,7 @@ class TableRowForm extends Component {
   handleNameChange = (e) => {
     let newPodcasts = this.state.podcast;
     newPodcasts.name = e.target.value;
-    let id = newPodcasts.name.replace(/\s/g, "_").toLowerCase();
+    let id = window.btoa(unescape(encodeURIComponent(newPodcasts.name)));
     newPodcasts.id = id;
     this.handleChange(this.state.id, newPodcasts);
   };
