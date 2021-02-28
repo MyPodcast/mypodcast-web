@@ -20,7 +20,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/podcast" component={PodcastArrayComponent} />
+          <Route exact path="/podcasts" component={PodcastArrayComponent} />
           <Route exact path="/policy" component={Policy} />
           <Route component={NotFound} />
         </Switch>
