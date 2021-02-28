@@ -46,7 +46,7 @@ export default class Home extends Component {
     let github = isLogged ? (
       <>
         <h1>Rendez vous sur l'onglet podcast pour editer vos podcast !</h1>
-        <Button href="/podcast" variant="outlined" color="primary">
+        <Button href="/podcasts" variant="outlined" color="primary">
           Podcasts
         </Button>
       </>
